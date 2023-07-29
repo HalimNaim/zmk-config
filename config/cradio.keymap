@@ -178,7 +178,7 @@
           &bootloader &sys_reset  &none      &none      &none          &none      &to _NV    &to _SM    &to _FN    &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │          │          │          │          │   │          │          │          │          │          │
-            BT_0       BT_1       &BT_2      &BT_3      &none          &none      &none      &none      &none      &none
+            BT_0       BT_1       BT_2       BT_3       &none          &none      &none      &none      &none      &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │          │          │          │          │   │          │          │          │          │          │
             &none      &kp LC(X)  &kp LC(C)  &kp LC(V)  &none          &none      &none      &none      &none      &none
