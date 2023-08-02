@@ -93,8 +93,8 @@
         //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │ , <      │ . >      │ / ?      │
             &lt _CP Z  &kp X      &kp C      &kp D      &kp V          &kp K      &kp H      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //                                 │  SPC ENT │          │   │  SFT CAP │  BSPC    │
-                                             &td_set    &to _NM        &td_scp    &kp BSPC
+        //                                 │          │  SPC ENT │   │  BSPC    │  SFT CAP │
+                                             &to _NM    &td_set        &kp BSPC   &td_scp
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -109,7 +109,7 @@
             &kp SQT    &kp N4     &kp N5     &kp N6     &kp MINUS      &kp TAB    &kp LGUI   &kp LALT   &kp LCTL   &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  ` ~     │  1       │  2       │  3       │  = +     │   │          │          │          │          │          │
-            &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp GRAVE  &none      &none      &none      &none
+            &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp GRAVE  &none      &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //                                 │          │          │   │          │          │
                                              &trans     &trans         &trans     &to _BS
