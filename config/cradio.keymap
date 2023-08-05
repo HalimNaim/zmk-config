@@ -14,7 +14,7 @@
 #define _FN 2
 #define _CP 3
 
-#defnie BSBS  &ht to _BS BSPC
+#define BSBS  &ht to _BS BSPC
 #define CPGV  &lt _CP GRAVE
 #define F10GV &lt _CP F10
 #define BT_0  &bt BT_SEL 0
