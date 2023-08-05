@@ -14,7 +14,7 @@
 #define _FN 2
 #define _CP 3
 
-#define BSBS  &tl _BS BSPC
+#define ENBS  &tl _BS ENTER
 #define CPGV  &lt _CP GRAVE
 #define F10GV &lt _CP F10
 #define BT_0  &bt BT_SEL 0
@@ -77,7 +77,7 @@
             &lt _CP Z  &kp X      &kp C      &kp D      &kp V          &kp K      &kp H      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //                                 │          │  SPC     │   │  BSPC    │  ENTER   │
-                                             &to _NM    &kp SPC        BSBS      &kp ENTER
+                                             &to _NM    &kp SPC        &kp BSPC   ENBS     
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -92,7 +92,7 @@
             HRML(SQT,      N4,        N5,        N6)    &kp MINUS      &kp TAB    HRMR(LEFT, DOWN,      UP,        RIGHT)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  ` ~     │  1       │  2       │  3       │  = +     │   │          │          │          │          │          │
-            CPGV       &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp GRAVE  &none      &trans     &trans     &to _FN
+            CPGV       &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp LPAR   &kp RPAR   &trans     &trans     &to _FN
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //                                 │          │          │   │          │          │
                                              &trans     &trans         &trans     &to _BS
@@ -103,14 +103,14 @@
         f_keys {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│  F12     │  F7      │  F8      │  F9      │          │   │          │          │          │          │          │
-            &kp F12    &kp F7     &kp F8     &kp F9     &kp F10        &none      &none      &none      &none      &none
+        //│          │  F7      │  F8      │  F9      │          │   │          │          │          │          │          │
+            &none      &kp F7     &kp F8     &kp F9     &kp F10        &none      &none      &none      &none      &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  F11     │  F4      │  F5      │  F6      │          │   │          │          │          │          │          │
-            &kp F11    &kp F4     &kp F5     &kp F6     &kp F11        &none      &kp LGUI   &kp LALT   &kp LCTL   &kp LSHFT
+        //│          │  F4      │  F5      │  F6      │          │   │          │          │          │          │          │
+            &none      &kp F4     &kp F5     &kp F6     &kp F11        &none      &kp LGUI   &kp LALT   &kp LCTL   &kp LSHFT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  F10     │  F1      │  F2      │  F3      │          │   │          │          │          │          │          │
-            F10GV      &kp F1     &kp F2     &kp F3     &kp F12        &none      &none      &none      &none      &none
+        //│          │  F1      │  F2      │  F3      │          │   │          │          │          │          │          │
+            &mo _CP    &kp F1     &kp F2     &kp F3     &kp F12        &none      &none      &none      &none      &none
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //                                 │          │          │   │          │          │
                                              &trans     &trans         &trans     &to _BS
