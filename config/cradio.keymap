@@ -6,16 +6,17 @@
 #include <dt-bindings/zmk/bt.h>
 
 // Home row mods macro
-#define HRML(k1,k2,k3) &ht LCTRL k1  &ht LALT k2 &ht LGUI  k3
-#define HRMR(k1,k2,k3) &ht RGUI  k1  &ht RALT k2 &ht RCTRL k3
+#define HRML(k1,k2,k3,k4) &ht LSHFT k1 &ht LCTRL k2 &ht LALT  k3 &ht LGUI  k4
+#define HRMR(k1,k2,k3,k4) &ht RGUI  k1 &ht RALT  k2 &ht RCTRL k3 &ht RSHFT k4
 
 #define _BS 0
 #define _NM 1
-#define _SM 2
-#define _FN 3
-#define _NV 4
-#define _CP 5
+#define _FN 2
+#define _CP 3
 
+#defnie BSBS  &ht to _BS BSPC
+#define CPGV  &lt _CP GRAVE
+#define F10GV &lt _CP F10
 #define BT_0  &bt BT_SEL 0
 #define BT_1  &bt BT_SEL 1
 #define BT_2  &bt BT_SEL 2
@@ -33,45 +34,17 @@
             global-quick-tap;
             bindings = <&kp>, <&kp>;
         };
+    };
 
-        td_qec: tap_dance_qec {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_QEC";
+    macros {
+        esc_bs: esc_bs {
+            label = "ESC_to_BS";
+            compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp Q>, <&kp ESC>;
-        };
-
-        td_atb: tap_dance_atb {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_ATB";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp A>, <&kp TAB>;
-        };
-
-        td_oqt: tap_dance_oqt {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_OQT";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp O>, <&kp SQT>;
-        };
-
-        td_set: tap_dance_set {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_SET";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp SPACE>, <&kp ENTER>;
-        };
-
-        td_scp: tap_dance_scp {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_SCP";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp LSHFT>, <&kp CAPS>;
+            bindings
+                = <&macro_tap &kp ESC>
+                , <&macro_tap &to _BS>
+                ;
         };
     };
 
@@ -88,13 +61,13 @@
             &kp Q      &kp W      &kp F      &kp P      &kp B          &kp J      &kp L      &kp U      &kp Y      &kp SEMI
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  A       │  R       │  S       │  T       │  G       │   │  M       │  N       │  E       │  I       │ O        │
-            &kp A      HRML(R,        S,         T)     &kp G          &kp M      HRMR(N,        E,         I)     &kp O
+            HRML(A,         R,        S,         T)     &kp G          &kp M      HRMR(N,        E,         I,         O)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │ , <      │ . >      │ / ?      │
             &lt _CP Z  &kp X      &kp C      &kp D      &kp V          &kp K      &kp H      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //                                 │          │  SPC ENT │   │  BSPC    │  SFT CAP │
-                                             &to _NM    &td_set        &kp BSPC   &td_scp
+        //                                 │          │  SPC     │   │  BSPC    │  ENT     │
+                                             &to _NM    &kp SPC        BSBS       &kp ENT
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -103,70 +76,34 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│          │  7       │  8       │  9       │  0       │   │          │          │          │          │          │
-            &kp ESC    &kp N7     &kp N8     &kp N9     &kp N0         &none      &to _NV    &to _SM    &to _FN    &none
+            &esc_bs    &kp N7     &kp N8     &kp N9     &kp N0         &kp LBKT   &kp RBKT   &kp LBRC   &kp RBRC   &kp BSLH         
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │  4       │  5       │  6       │  - _     │   │          │          │          │          │          │
-            &kp SQT    &kp N4     &kp N5     &kp N6     &kp MINUS      &kp TAB    &kp LGUI   &kp LALT   &kp LCTL   &none
+        //│ ' "      │  4       │  5       │  6       │  - _     │   │          │          │          │          │          │
+            HRML(SQT,      N4,        N5,        N6)    &kp MINUS      &kp TAB    HRMR(LEFT, DOWN,      UP,        RIGHT)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  ` ~     │  1       │  2       │  3       │  = +     │   │          │          │          │          │          │
-            &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp GRAVE  &none      &trans     &trans     &trans
+            CPGV       &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp GRAVE  &none      &trans     &trans     &to _FN
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //                                 │          │          │   │          │          │
-                                             &trans     &trans         &to _BS    &trans 
+                                             &trans     &trans         &trans     &to _BS
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
-
-        symbols {
-            bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│          │          │          │          │          │   │          │          │          │          │          │
-            &none      &none      &kp LBKT   &kp RBKT   &none          &none      &to _NV    &to _SM    &to _FN    &none
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │   │          │          │          │          │          │
-            &none      &none      &kp LPAR   &kp RPAR   &none          &none      &kp LGUI   &kp LALT   &kp LCTL   &none
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │   │          │          │          │          │          │
-            &none      &none      &kp LBRC   &kp RBRC   &kp BSLH       &none      &none      &none      &none      &none
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //                                 │          │          │   │          │          │
-                                             &trans     &trans         &to _BS    &trans
-        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            >;
-        };
-
+        
         f_keys {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│  F12     │  F7      │  F8      │  F9      │          │   │          │          │          │          │          │
-            &kp F12    &kp F7     &kp F8     &kp F9     &none          &none      &to _NV    &to _SM    &to _FN    &none
+            &kp F12    &kp F7     &kp F8     &kp F9     &kp F10        &none      &none      &none      &none      &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  F11     │  F4      │  F5      │  F6      │          │   │          │          │          │          │          │
-            &kp F11    &kp F4     &kp F5     &kp F6     &none          &none      &kp LGUI   &kp LALT   &kp LCTL   &none
+            &kp F11    &kp F4     &kp F5     &kp F6     &kp F11        &none      &kp LGUI   &kp LALT   &kp LCTL   &kp LSHFT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  F10     │  F1      │  F2      │  F3      │          │   │          │          │          │          │          │
-            &kp F10    &kp F1     &kp F2     &kp F3     &none          &none      &none      &none      &none      &none
+            F10GV      &kp F1     &kp F2     &kp F3     &kp F12        &none      &none      &none      &none      &none
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //                                 │          │          │   │          │          │
-                                             &trans     &trans         &to _BS    &trans
-        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            >;
-        };
-
-        nav {
-            bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│          │          │          │          │          │   │          │          │          │          │          │
-            &none      &none      &none      &none      &none          &none      &to _NV    &to _SM    &to _FN    &none
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │   │          │          │          │          │          │
-            &none      &kp LCTL   &kp LALT   &kp LGUI   &none          &none      &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │   │          │          │          │          │          │
-            &none      &none      &none      &none      &none          &none      &kp HOME   &kp PG_DN  &kp PG_UP  &kp END
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //                                 │          │          │   │          │          │
-                                             &trans     &trans         &to _BS    &trans
+                                             &trans     &trans         &trans     &to _BS
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -175,16 +112,16 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│          │          │          │          │          │   │          │          │          │          │          │
-          &bootloader &sys_reset  &none      &none      &none          &none      &to _NV    &to _SM    &to _FN    &none
+          &bootloader &sys_reset  &none      &none      &none          &none      &none      &none      &none      &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │          │          │          │          │   │          │          │          │          │          │
-            BT_0       BT_1       BT_2       BT_3       &bt BT_CLR     &none      &none      &none      &none      &none
+            &none      &none      &kp LG(Z)  &kp LG(LS(Z)) &none       BT_0       BT_1       BT_2       BT_3       &bt BT_CLR
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │          │          │          │          │   │          │          │          │          │          │
             &none      &kp LG(X)  &kp LG(C)  &kp LG(V)  &none          &none      &none      &none      &none      &none
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //                                 │          │          │   │          │          │
-                                             &trans     &trans         &to _BS    &trans
+                                             &trans     &trans         &none      &none  
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
