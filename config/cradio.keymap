@@ -14,7 +14,7 @@
 #define _FN 2
 #define _CP 3
 
-#define BSBS  &ht to _BS BSPC
+#define BSBS  &tl _BS BSPC
 #define CPGV  &lt _CP GRAVE
 #define F10GV &lt _CP F10
 #define BT_0  &bt BT_SEL 0
@@ -33,6 +33,16 @@
             quick-tap-ms = <150>;
             global-quick-tap;
             bindings = <&kp>, <&kp>;
+        };
+
+        tl: tap_layer {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TAP_LAYER";
+            #binding-cells = <2>;
+            tapping_term_ms = <200>;
+            quick_tap_ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&to>, <&kp>;
         };
     };
 
