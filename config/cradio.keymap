@@ -92,7 +92,7 @@
             HRML(SQT,      N4,        N5,        N6)    &kp MINUS      &kp TAB    HRMR(LEFT, DOWN,      UP,        RIGHT)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  ` ~     │  1       │  2       │  3       │  = +     │   │          │          │          │          │          │
-            CPGV       &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp LPAR   &kp RPAR   &trans     &trans     &to _FN
+            CPGV       &kp N1     &kp N2     &kp N3     &kp EQUAL      &to _FN    &caps_word &trans     &trans     &trans 
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //                                 │          │          │   │          │          │
                                              &trans     &trans         &to _BS    &trans 
