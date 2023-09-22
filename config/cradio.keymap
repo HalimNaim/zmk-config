@@ -77,7 +77,7 @@
         compatible = "zmk,combos";
 
 	COMBO(esc, &esc_bs, 3 6)
-        COMBO(enter, &kp ENTER, 30 33)
+        // COMBO(enter, &kp ENTER, 30 33)
     };
 
     conditional_layers {
@@ -99,7 +99,7 @@
             &lt _CP Z  &kp X      &kp C      &kp D      &kp V          &kp K      &kp H      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //                                 │          │          │   │          │          │
-                                             &kp BSPC   &to _NM        &to _BS    &kp SPACE
+                                             &kp BSPC   &to _NM        &kp ENTER  &kp SPACE
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
